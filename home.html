@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulinde Louis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .auto-style1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .auto-style2 {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            margin: 10px auto;
+        }
+
+        .social-links li {
+            margin-right: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="auto-style1">Welcome to My World!</h1>
+    <p class="auto-style2">By Mulinde Louis</p>
+    <p class="auto-style2">Discover new ideas, inspiration, and stories with me! I'm Mulinde Louis, and I'm excited to share my thoughts, experiences, and passions with you. Explore my site to learn more about life, creativity, and growth.</p>
+    <h2 class="auto-style2">What to Expect</h2>
+    <ul>
+        <li class="auto-style2">Inspiring stories and reflections</li>
+        <li class="auto-style2">Creative ideas and projects</li>
+        <li class="auto-style2">Personal growth and self-improvement tips</li>
+    </ul>
+    <h2 class="auto-style2">Get Started</h2>
+    <ul>
+        <li class="auto-style2">Learn More About Me</li>
+        <li class="auto-style2">Explore My Latest Posts</li>
+        <li class="auto-style2">Let's Connect!</li>
+    </ul>
+    <button id="changeColorBtn">Change Color</button>
+
+    <footer>
+        <p>&copy; 2025 Mulinde Louis</p>
+        <ul class="social-links">
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        document.getElementById('changeColorBtn').addEventListener('click', function() {
+            const greetingElement = document.querySelector('.auto-style1');
+            greetingElement.style.color = greetingElement.style.color === 'red' ? '#333' : 'red';
+        });
+    </script>
+</body>
+</html>
