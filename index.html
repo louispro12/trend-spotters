@@ -1,101 +1,96 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mulinde Louis</title>
+    <title>KIMSS International — Class Website Suggestions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            background: #f5f5f5;
+            padding: 20px;
         }
-
-        .auto-style1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #333;
+        h1 { text-align: center; }
+        #suggestions {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
         }
-
-        .auto-style2 {
-            font-size: 1.2em;
-            color: #666;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
+        .item {
             padding: 10px;
-            background-color: #333;
-            color: #fff;
+            background: #eaeaea;
+            margin-top: 10px;
+            border-radius: 5px;
         }
-
-        .social-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: space-between;
-            width: 200px;
-            margin: 10px auto;
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
         }
-
-        .social-links li {
-            margin-right: 20px;
-        }
-
-        .social-links a {
-            color: #fff;
+        button {
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1 class="auto-style1">Welcome to My World!</h1>
-    <p class="auto-style2">By Mulinde Louis</p>
-    <p class="auto-style2">Discover new ideas, inspiration, and stories with me! I'm Mulinde Louis, and I'm excited to share my thoughts, experiences, and passions with you. Explore my site to learn more about life, creativity, and growth.</p>
-    <h2 class="auto-style2">What to Expect</h2>
-    <ul>
-        <li class="auto-style2">Inspiring stories and reflections</li>
-        <li class="auto-style2">Creative ideas and projects</li>
-        <li class="auto-style2">Personal growth and self-improvement tips</li>
-    </ul>
-    <h2 class="auto-style2">Get Started</h2>
-    <ul>
-        <li class="auto-style2">Learn More About Me</li>
-        <li class="auto-style2">Explore My Latest Posts</li>
-        <li class="auto-style2">Let's Connect!</li>
-    </ul>
-    <button id="changeColorBtn">Change Color</button>
 
-    <footer>
-        <p>&copy; 2025 Mulinde Louis</p>
-        <ul class="social-links">
-            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
-            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-        </ul>
-    </footer>
+<h1>KIMSS International — Class Website Ideas</h1>
+<p>Submit your ideas for the class website. Everyone can see what others suggested.</p>
 
-    <script>
-        document.getElementById('changeColorBtn').addEventListener('click', function() {
-            const greetingElement = document.querySelector('.auto-style1');
-            greetingElement.style.color = greetingElement.style.color === 'red' ? '#333' : 'red';
+<h3>Submit a Suggestion</h3>
+<input id="name" placeholder="Your name (optional)">
+<textarea id="idea" placeholder="Write your suggestion here..."></textarea>
+<button onclick="submitIdea()">Submit</button>
+
+<div id="suggestions">
+    <h2>All Suggestions</h2>
+    <div id="list"></div>
+</div>
+
+<script>
+    // Load suggestions from local storage (temporary memory)
+    let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
+    displaySuggestions();
+
+    function submitIdea() {
+        let name = document.getElementById("name").value;
+        let idea = document.getElementById("idea").value;
+
+        if (idea.trim() === "") {
+            alert("Please type a suggestion.");
+            return;
+        }
+
+        let item = {
+            name: name || "Anonymous",
+            idea: idea,
+            time: new Date().toLocaleString()
+        };
+
+        suggestions.push(item);
+        localStorage.setItem("suggestions", JSON.stringify(suggestions));
+
+        displaySuggestions();
+
+        document.getElementById("name").value = "";
+        document.getElementById("idea").value = "";
+    }
+
+    function displaySuggestions() {
+        let list = document.getElementById("list");
+        list.innerHTML = "";
+
+        suggestions.forEach(s => {
+            let div = document.createElement("div");
+            div.className = "item";
+            div.innerHTML = `<b>${s.name}</b><br>${s.idea}<br><small>${s.time}</small>`;
+            list.appendChild(div);
         });
-    </script>
+    }
+</script>
+
 </body>
 </html>
-
