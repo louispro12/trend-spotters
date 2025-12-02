@@ -1,121 +1,322 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>KIMSS S1 Class of 2024 – Suggestions</title>
+    <title>KIMSS S1 Class of 2024 – Class Website Suggestions</title>
     <style>
+        :root {
+            --main-bg: #f6f3e9;
+            --card-bg: #ffffff;
+            --accent-gold: #d4af37;
+            --accent-gold-soft: #f2e3b3;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --header-bg: #111111;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background: #e8edf5;
+            background: var(--main-bg);
             margin: 0;
             padding: 0;
+            color: var(--text-main);
         }
+
         header {
-            background: #1a3d7c;
-            color: white;
-            padding: 30px;
+            background: var(--header-bg);
+            color: #fdfaf3;
+            padding: 26px 12px 30px 12px;
             text-align: center;
-            font-size: 28px;
+            font-size: 26px;
             letter-spacing: 1px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+            border-bottom: 4px solid var(--accent-gold);
         }
+
+        header span.sub {
+            display: block;
+            font-size: 14px;
+            margin-top: 6px;
+            color: var(--accent-gold-soft);
+        }
+
+        /* Little gold bar animation under header */
+        .gold-bar {
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+            border-radius: 999px;
+            animation: pulseBar 2.5s infinite;
+        }
+
+        @keyframes pulseBar {
+            0% { width: 60px; opacity: 0.7; }
+            50% { width: 120px; opacity: 1; }
+            100% { width: 60px; opacity: 0.7; }
+        }
+
         .container {
             width: 92%;
-            max-width: 900px;
-            margin: auto;
-            margin-top: 25px;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            transition: 0.3s;
+            max-width: 950px;
+            margin: 22px auto;
+            background: var(--card-bg);
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
         .container:hover {
-            transform: scale(1.01);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(0,0,0,0.18);
         }
+
         h2 {
-            border-left: 5px solid #1a3d7c;
+            border-left: 5px solid var(--accent-gold);
             padding-left: 10px;
+            margin-top: 0;
+            margin-bottom: 10px;
         }
+
+        p, li {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
         input, textarea {
             width: 100%;
-            padding: 12px;
+            padding: 11px;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid #c7c3b6;
             margin-top: 8px;
-            font-size: 15px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
         }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 2px rgba(212,175,55,0.25);
+        }
+
         textarea {
             height: 120px;
+            resize: vertical;
         }
+
         button {
             width: 100%;
-            padding: 15px;
+            padding: 13px;
             margin-top: 12px;
-            background: #1a3d7c;
-            color: white;
-            font-size: 18px;
+            background: var(--header-bg);
+            color: #fdfaf3;
+            font-size: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 999px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
         }
+
         button:hover {
-            background: #2e58a6;
+            background: #222222;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+            transform: translateY(-1px);
         }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+
         .category-box {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
+            margin-top: 8px;
         }
+
         .cat {
             display: flex;
             justify-content: space-between;
-            background: #f0f4ff;
-            padding: 8px;
-            border-radius: 6px;
+            background: var(--accent-gold-soft);
+            padding: 7px 10px;
+            border-radius: 8px;
             align-items: center;
+            font-size: 14px;
         }
+
+        .cat span {
+            font-weight: 500;
+        }
+
+        .cat input[type="checkbox"] {
+            transform: scale(1.1);
+        }
+
         .suggestion {
-            background: #eef2f7;
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 6px;
-            transition: 0.3s;
+            background: #f5f1e3;
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            border: 1px solid rgba(0,0,0,0.05);
         }
+
         .suggestion:hover {
-            transform: scale(1.01);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 7px rgba(0,0,0,0.18);
         }
+
         .vote-count {
             font-size: 13px;
-            color: #333;
+            color: #333333;
+        }
+
+        .label-small {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .top-cats {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fffaf0;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-gold);
+            font-size: 14px;
+        }
+
+        .top-cats-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #7a620f;
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            background: var(--header-bg);
+            color: #fdfaf3;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+            display: none;
+            z-index: 100;
+        }
+
+        #backToTop:hover {
+            background: #222222;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: #111;
+            padding: 2px 7px;
+            border-radius: 999px;
+            font-size: 11px;
+            margin-left: 4px;
         }
     </style>
 </head>
 
 <body>
 
-<header>KIMSS S1 Class of 2024 – Suggestion Center</header>
+<header>
+    KIMSS S1 Class of 2024
+    <span class="sub">Official Class Website Suggestion Center</span>
+    <div class="gold-bar"></div>
+</header>
 
+<!-- INTRO -->
 <div class="container">
-    <h2>Class Name Suggestions</h2>
+    <h2>Welcome!</h2>
+    <p>
+        This page is for collecting <b>ideas and suggestions</b> from students of 
+        <b>KIMSS S1 Class of 2024</b> to help us design and build the official class website.
+        Everything you write here is meant to improve how our class is seen, remembered and enjoyed online.
+    </p>
+    <p>
+        ✔ These suggestions are <b>only for the class website</b>  
+        ✔ Everyone in class can give ideas  
+        ✔ The final website will be based on what students suggest here  
+    </p>
+</div>
+
+<!-- ABOUT / WHY PARTICIPATE -->
+<div class="container">
+    <h2>About This Suggestion Project</h2>
+    <p>
+        The goal of this project is to build a class website that truly represents our S1 family – 
+        our <b>vibes, jokes, photos, memories, achievements and stories</b>. Instead of one person 
+        deciding everything, this page lets the whole class contribute.
+    </p>
+    <p>
+        By participating, you help decide:
+    </p>
+    <ul>
+        <li>The best <b>class name</b> to use on the website</li>
+        <li>Which <b>sections and categories</b> should be on the site</li>
+        <li>What kind of <b>content</b> (jazz, photos, events, memories, etc.) will appear</li>
+        <li>How KIMSS S1 Class of 2024 will be remembered in future</li>
+    </ul>
+    <p>
+        Every clean and respectful idea is welcome – serious, funny or creative.  
+        <b>Your voice matters. Help us create a class website we’ll be proud to show off.</b>
+    </p>
+</div>
+
+<!-- CLASS NAME SUGGESTIONS -->
+<div class="container">
+    <h2>Class Name Suggestions <span class="badge">Name Only</span></h2>
+
+    <p class="label-small">
+        Suggest a cool, respectful name for our class website (example: <i>"S1 Gold Squad 2024"</i>).
+        Please keep it clean – abusive or violent words will be blocked.
+    </p>
 
     <input id="nameClass" placeholder="Your name (optional)">
-    <input id="classNameIdea" placeholder="Suggest a Class Name (Example: 'S1 Legends 2024')">
+    <input id="classNameIdea" placeholder="Suggest a Class Name">
 
     <button onclick="submitClassName()">Submit Class Name</button>
 
     <div id="classNamesList"></div>
 </div>
 
-
-
+<!-- GENERAL WEBSITE SUGGESTIONS -->
 <div class="container">
-    <h2>General Suggestions</h2>
+    <h2>Other Suggestions for the Class Website</h2>
+
+    <p class="label-small">
+        Here you can suggest features, content ideas, design thoughts and anything else 
+        you think would make our class website better. No abuses or insults allowed.
+    </p>
 
     <input id="name" placeholder="Your Name (optional)">
-    <textarea id="idea" placeholder="Your suggestion..."></textarea>
+    <textarea id="idea" placeholder="Your idea or suggestion about the class website..."></textarea>
 
     <h3>Choose Categories</h3>
+    <p class="label-small">Tick the categories that match your suggestion:</p>
 
     <div class="category-box">
         <label class="cat"><span>Jazz</span> <input type="checkbox" value="Jazz"></label>
@@ -130,48 +331,70 @@
         <label class="cat"><span>Inspiration Wall</span> <input type="checkbox" value="Inspiration Wall"></label>
     </div>
 
-    <button onclick="submitSuggestion()">Submit Suggestion</button>
+    <button onclick="submitSuggestion()">Submit Website Suggestion</button>
 </div>
 
-
-
+<!-- CATEGORY VOTES -->
 <div class="container">
     <h2>Category Votes</h2>
-    <div id="voteList"></div>
+    <p class="label-small">
+        Every time someone submits a suggestion with a category ticked, that category gets a vote.
+        This helps us see what students want most on the website.
+    </p>
+    <div class="top-cats">
+        <div class="top-cats-title">Top Voted Categories (Live)</div>
+        <div id="topCategoriesText">No votes yet. Be the first to suggest something!</div>
+    </div>
+    <div id="voteList" style="margin-top:10px;"></div>
 </div>
 
+<!-- ALL SUGGESTIONS -->
 <div class="container">
     <h2>All Suggestions</h2>
+    <p class="label-small">
+        Here you can read what other students have suggested about the class website.
+        Use this to get ideas and build on each other’s creativity.
+    </p>
     <div id="suggestionsList"></div>
 </div>
 
-
+<!-- Back to top button -->
+<button id="backToTop" onclick="scrollToTop()">Top ↑</button>
 
 <script>
     let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
     let votes = JSON.parse(localStorage.getItem("votes") || "{}");
     let classNames = JSON.parse(localStorage.getItem("classNames") || "[]");
 
-    const BAD_WORDS = ["fuck","bitch","pussy","dick","asshole","nigga","shit","mf","motherfucker","whore"];
-
-    displaySuggestions();
-    displayVotes();
-    displayClassNames();
+    // Abuse word list – used only for blocking bad content
+    const BAD_WORDS = [
+        "fuck","bitch","pussy","dick","asshole","nigga","shit","mf",
+        "motherfucker","whore","idiot","stupid","fool","retard"
+    ];
 
     function containsAbuse(text) {
         let lower = text.toLowerCase();
         return BAD_WORDS.some(word => lower.includes(word));
     }
 
+    // Initial display
+    displaySuggestions();
+    displayVotes();
+    displayClassNames();
 
-
-    // CLASS NAME SUBMISSION
+    // CLASS NAME FUNCTIONS
     function submitClassName() {
         let name = document.getElementById("nameClass").value || "Anonymous";
         let idea = document.getElementById("classNameIdea").value;
 
-        if (idea.trim() === "") return alert("Please enter a class name suggestion.");
-        if (containsAbuse(idea)) return alert("Abusive words are not allowed.");
+        if (idea.trim() === "") {
+            alert("Please enter a class name suggestion.");
+            return;
+        }
+        if (containsAbuse(idea) || containsAbuse(name)) {
+            alert("Abusive or violent words are not allowed. Please keep it clean.");
+            return;
+        }
 
         classNames.push({ name, idea, time: new Date().toLocaleString() });
 
@@ -182,10 +405,14 @@
         document.getElementById("classNameIdea").value = "";
     }
 
-
     function displayClassNames() {
         let list = document.getElementById("classNamesList");
         list.innerHTML = "";
+
+        if (classNames.length === 0) {
+            list.innerHTML = "<p class='label-small'>No class name suggestions yet. Be the first to add one.</p>";
+            return;
+        }
 
         classNames.forEach(s => {
             list.innerHTML += `
@@ -198,20 +425,29 @@
         });
     }
 
-
-
-    // GENERAL SUGGESTIONS
+    // GENERAL WEBSITE SUGGESTIONS
     function submitSuggestion() {
         let name = document.getElementById("name").value || "Anonymous";
         let idea = document.getElementById("idea").value;
 
-        if (idea.trim() === "") return alert("Please enter a suggestion.");
-        if (containsAbuse(idea)) return alert("Abusive words not allowed.");
+        if (idea.trim() === "") {
+            alert("Please enter a suggestion.");
+            return;
+        }
+        if (containsAbuse(idea) || containsAbuse(name)) {
+            alert("Abusive or violent words are not allowed. Please write something respectful.");
+            return;
+        }
 
         let checked = [...document.querySelectorAll("input[type='checkbox']:checked")].map(c => c.value);
-        if (checked.length === 0) return alert("Select at least one category.");
+        if (checked.length === 0) {
+            alert("Select at least one category.");
+            return;
+        }
 
-        checked.forEach(cat => { votes[cat] = (votes[cat] || 0) + 1; });
+        checked.forEach(cat => {
+            votes[cat] = (votes[cat] || 0) + 1;
+        });
 
         suggestions.push({
             name: name,
@@ -231,25 +467,44 @@
         document.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
     }
 
-
     function displayVotes() {
         let voteList = document.getElementById("voteList");
+        let topText = document.getElementById("topCategoriesText");
         voteList.innerHTML = "";
 
-        Object.keys(votes).forEach(cat => {
+        let entries = Object.entries(votes);
+        if (entries.length === 0) {
+            topText.textContent = "No votes yet. Suggest something and tick a category to start the list.";
+            return;
+        }
+
+        // Sort by votes, high to low
+        entries.sort((a,b) => b[1] - a[1]);
+
+        // Top 3 text
+        let topThree = entries.slice(0,3);
+        let topStrings = topThree.map(([cat, count]) => `${cat} (${count})`);
+        topText.textContent = topStrings.join(" · ");
+
+        // Full list
+        entries.forEach(([cat, count]) => {
             voteList.innerHTML += `
                 <div class="cat">
-                    <b>${cat}</b>
-                    <span class="vote-count">${votes[cat]} votes</span>
+                    <span>${cat}</span>
+                    <span class="vote-count">${count} vote${count !== 1 ? "s" : ""}</span>
                 </div>
             `;
         });
     }
 
-
     function displaySuggestions() {
         let list = document.getElementById("suggestionsList");
         list.innerHTML = "";
+
+        if (suggestions.length === 0) {
+            list.innerHTML = "<p class='label-small'>No website suggestions yet. Add yours above to get things started.</p>";
+            return;
+        }
 
         suggestions.forEach(s => {
             list.innerHTML += `
@@ -261,6 +516,20 @@
                 </div>
             `;
         });
+    }
+
+    // Back to top button logic
+    window.addEventListener("scroll", () => {
+        const btn = document.getElementById("backToTop");
+        if (window.scrollY > 200) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 </script>
 
