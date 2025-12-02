@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>S1 Class Website Suggestions</title>
+    <title>KIMSS S1 Class of 2024 – Class Website Suggestions</title>
     <style>
         :root {
             --main-bg: #f6f3e9;
-            --card-bg: #ffffffcc; /* slight transparency for visual depth */
+            --card-bg: #ffffff;
             --accent-gold: #d4af37;
             --accent-gold-soft: #f2e3b3;
             --text-main: #111111;
@@ -14,7 +14,6 @@
         }
 
         * { box-sizing: border-box; }
-
         body {
             font-family: Arial, sans-serif;
             background: var(--main-bg);
@@ -139,16 +138,17 @@
         .cat {
             display: flex;
             justify-content: space-between;
+            background: var(--accent-gold-soft);
+            padding: 7px 10px;
+            border-radius: 8px;
             align-items: center;
             font-size: 14px;
-            border-radius: 8px;
-            padding: 7px 10px;
-            background: url('category-bg.jpg') no-repeat center/cover; /* replace with your image */
-            color: #fff;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            background-size: cover;
+            background-position: center;
+            color: #111;
         }
 
+        .cat span { font-weight: 500; }
         .cat input[type="checkbox"] { transform: scale(1.1); }
 
         .suggestion {
@@ -158,6 +158,7 @@
             border-radius: 8px;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             border: 1px solid rgba(0,0,0,0.05);
+            word-wrap: break-word;
         }
 
         .suggestion:hover {
@@ -212,10 +213,10 @@
         }
     </style>
 </head>
-
 <body>
+
 <header>
-    S1 Class of 2024
+    KIMSS S1 Class of 2024
     <span class="sub">Official Class Website Suggestion Center</span>
     <div class="gold-bar"></div>
 </header>
@@ -223,16 +224,34 @@
 <!-- INTRO -->
 <div class="container">
     <h2>Welcome!</h2>
-    <p>This page collects <b>ideas and suggestions</b> from students to help design our class website. Your input will shape how our class is remembered online.</p>
+    <p>
+        This page collects <b>ideas and suggestions</b> from students to design our official class website.
+        Everything here improves how our class is seen, remembered, and enjoyed online.
+    </p>
+    <p>
+        ✔ Suggestions are <b>only for the class website</b><br>
+        ✔ Everyone can contribute<br>
+        ✔ Final website will reflect student input
+    </p>
 </div>
 
 <!-- ABOUT -->
 <div class="container">
     <h2>About This Project</h2>
-    <p>Help decide class name, website sections, content, and more. Clean, respectful ideas are welcome. Everyone’s voice matters!</p>
+    <p>
+        Build a class website that represents our S1 group – <b>vibes, jokes, photos, memories, achievements, and stories</b>.  
+        This lets the whole class participate.
+    </p>
+    <ul>
+        <li>Choose the best <b>class name</b></li>
+        <li>Decide which <b>sections/categories</b> appear</li>
+        <li>Suggest <b>content</b> (jazz, photos, events, memories)</li>
+        <li>Help our S1 2024 legacy online</li>
+    </ul>
+    <p>All clean ideas welcome – funny, serious, or creative. <b>Your voice matters!</b></p>
 </div>
 
-<!-- CLASS NAME SUGGESTIONS -->
+<!-- CLASS NAME -->
 <div class="container">
     <h2>Class Name Suggestions <span class="badge">Name Only</span></h2>
     <input id="nameClass" placeholder="Your name (optional)">
@@ -241,23 +260,23 @@
     <div id="classNamesList"></div>
 </div>
 
-<!-- GENERAL WEBSITE SUGGESTIONS -->
+<!-- WEBSITE SUGGESTIONS -->
 <div class="container">
-    <h2>Other Suggestions for the Class Website</h2>
+    <h2>Other Suggestions</h2>
     <input id="name" placeholder="Your Name (optional)">
-    <textarea id="idea" placeholder="Your idea or suggestion about the class website..."></textarea>
+    <textarea id="idea" placeholder="Your idea about the class website..."></textarea>
     <h3>Choose Categories</h3>
-    <div class="category-box" id="categoryBox">
-        <label class="cat"><span>Jazz</span> <input type="checkbox" value="Jazz"></label>
-        <label class="cat"><span>Photo Epics</span> <input type="checkbox" value="Photo Epics"></label>
-        <label class="cat"><span>School Vybes</span> <input type="checkbox" value="School Vybes"></label>
-        <label class="cat"><span>Memories</span> <input type="checkbox" value="Memories"></label>
-        <label class="cat"><span>Class Members</span> <input type="checkbox" value="Class Members"></label>
-        <label class="cat"><span>Achievements</span> <input type="checkbox" value="Achievements"></label>
-        <label class="cat"><span>Events</span> <input type="checkbox" value="Events"></label>
-        <label class="cat"><span>News Updates</span> <input type="checkbox" value="News Updates"></label>
-        <label class="cat"><span>Fun Corner</span> <input type="checkbox" value="Fun Corner"></label>
-        <label class="cat"><span>Inspiration Wall</span> <input type="checkbox" value="Inspiration Wall"></label>
+    <div class="category-box">
+        <label class="cat" style="background-image: url('jazz.jpg');"><span>Jazz</span> <input type="checkbox" value="Jazz"></label>
+        <label class="cat" style="background-image: url('photo.jpg');"><span>Photo Epics</span> <input type="checkbox" value="Photo Epics"></label>
+        <label class="cat" style="background-image: url('vybes.jpg');"><span>School Vybes</span> <input type="checkbox" value="School Vybes"></label>
+        <label class="cat" style="background-image: url('memories.jpg');"><span>Memories</span> <input type="checkbox" value="Memories"></label>
+        <label class="cat" style="background-image: url('members.jpg');"><span>Class Members</span> <input type="checkbox" value="Class Members"></label>
+        <label class="cat" style="background-image: url('achievements.jpg');"><span>Achievements</span> <input type="checkbox" value="Achievements"></label>
+        <label class="cat" style="background-image: url('events.jpg');"><span>Events</span> <input type="checkbox" value="Events"></label>
+        <label class="cat" style="background-image: url('news.jpg');"><span>News Updates</span> <input type="checkbox" value="News Updates"></label>
+        <label class="cat" style="background-image: url('fun.jpg');"><span>Fun Corner</span> <input type="checkbox" value="Fun Corner"></label>
+        <label class="cat" style="background-image: url('inspire.jpg');"><span>Inspiration Wall</span> <input type="checkbox" value="Inspiration Wall"></label>
     </div>
     <button onclick="submitSuggestion()">Submit Website Suggestion</button>
 </div>
@@ -267,12 +286,12 @@
     <h2>Category Votes</h2>
     <div class="top-cats">
         <div class="top-cats-title">Top Voted Categories (Live)</div>
-        <div id="topCategoriesText">No votes yet. Be the first to suggest something!</div>
+        <div id="topCategoriesText">No votes yet.</div>
     </div>
     <div id="voteList" style="margin-top:10px;"></div>
 </div>
 
-<!-- ALL SUGGESTIONS -->
+<!-- ALL WEBSITE SUGGESTIONS -->
 <div class="container">
     <h2>All Suggestions</h2>
     <div id="suggestionsList"></div>
@@ -281,83 +300,78 @@
 <button id="backToTop" onclick="scrollToTop()">Top ↑</button>
 
 <script>
-window.onload = function() {
-    let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
-    let votes = JSON.parse(localStorage.getItem("votes") || "{}");
-    let classNames = JSON.parse(localStorage.getItem("classNames") || "[]");
+let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
+let votes = JSON.parse(localStorage.getItem("votes") || "{}");
+let classNames = JSON.parse(localStorage.getItem("classNames") || "[]");
 
-    const BAD_WORDS = ["fuck","bitch","pussy","dick","asshole","nigga","shit","mf","motherfucker","whore","idiot","stupid","fool","retard"];
-    function containsAbuse(text) { return BAD_WORDS.some(word => text.toLowerCase().includes(word)); }
+// Block bad words
+const BAD_WORDS = ["fuck","bitch","pussy","dick","asshole","nigga","shit","mf","motherfucker","whore","idiot","stupid","fool","retard"];
+function containsAbuse(text) { return BAD_WORDS.some(w => text.toLowerCase().includes(w)); }
 
-    function displayClassNames() {
-        let list = document.getElementById("classNamesList");
-        list.innerHTML = "";
-        if(classNames.length === 0) list.innerHTML="<p class='label-small'>No class name suggestions yet.</p>";
-        classNames.forEach(s => {
-            list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br><b>Class Name Suggestion:</b> ${s.idea}</div>`;
-        });
-    }
-
-    function displaySuggestions() {
-        let list = document.getElementById("suggestionsList");
-        list.innerHTML = "";
-        if(suggestions.length === 0) list.innerHTML="<p class='label-small'>No suggestions yet.</p>";
-        suggestions.forEach(s => {
-            list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br><br>${s.idea}<br><br><b>Categories:</b> ${s.categories.join(", ")}</div>`;
-        });
-    }
-
-    function displayVotes() {
-        let voteList = document.getElementById("voteList");
-        let topText = document.getElementById("topCategoriesText");
-        voteList.innerHTML = "";
-        let entries = Object.entries(votes);
-        if(entries.length===0){ topText.textContent="No votes yet. Suggest something."; return; }
-        entries.sort((a,b)=>b[1]-a[1]);
-        topText.textContent = entries.slice(0,3).map(([cat,c])=>`${cat} (${c})`).join(" · ");
-        entries.forEach(([cat,count])=>{ voteList.innerHTML += `<div class="cat"><span>${cat}</span> <span class="vote-count">${count} vote${count!==1?"s":""}</span></div>`; });
-    }
-
-    window.submitClassName = function() {
-        let name = document.getElementById("nameClass").value || "Anonymous";
-        let idea = document.getElementById("classNameIdea").value;
-        if(!idea.trim()){ alert("Enter a class name."); return; }
-        if(containsAbuse(name) || containsAbuse(idea)){ alert("No abusive words allowed."); return; }
-        classNames.push({name,idea,time:new Date().toLocaleString()});
-        localStorage.setItem("classNames", JSON.stringify(classNames));
-        displayClassNames();
-        document.getElementById("nameClass").value=""; document.getElementById("classNameIdea").value="";
-    }
-
-    window.submitSuggestion = function() {
-        let name = document.getElementById("name").value || "Anonymous";
-        let idea = document.getElementById("idea").value;
-        if(!idea.trim()){ alert("Enter a suggestion."); return; }
-        if(containsAbuse(name) || containsAbuse(idea)){ alert("No abusive words allowed."); return; }
-
-        let container = document.getElementById("categoryBox");
-        let checked = [...container.querySelectorAll("input[type='checkbox']:checked")].map(c=>c.value);
-        if(checked.length===0){ alert("Select at least one category."); return; }
-
-        checked.forEach(cat=>{ votes[cat] = (votes[cat]||0)+1; });
-        suggestions.push({name,idea,categories:checked,time:new Date().toLocaleString()});
-        localStorage.setItem("suggestions", JSON.stringify(suggestions));
-        localStorage.setItem("votes", JSON.stringify(votes));
-
-        displaySuggestions(); displayVotes();
-        document.getElementById("name").value=""; document.getElementById("idea").value="";
-        container.querySelectorAll("input[type='checkbox']").forEach(cb=>cb.checked=false);
-    }
-
-    displayClassNames(); displaySuggestions(); displayVotes();
-
-    window.addEventListener("scroll", () => {
-        const btn = document.getElementById("backToTop");
-        btn.style.display = (window.scrollY>200)?"block":"none";
-    });
-
-    window.scrollToTop = function(){ window.scrollTo({ top:0, behavior:"smooth" }); }
+function submitClassName() {
+    let name = document.getElementById("nameClass").value || "Anonymous";
+    let idea = document.getElementById("classNameIdea").value;
+    if (!idea.trim()) { alert("Enter a class name."); return; }
+    if (containsAbuse(idea) || containsAbuse(name)) { alert("No abusive words allowed."); return; }
+    classNames.push({name, idea, time: new Date().toLocaleString()});
+    localStorage.setItem("classNames", JSON.stringify(classNames));
+    displayClassNames();
+    document.getElementById("nameClass").value = "";
+    document.getElementById("classNameIdea").value = "";
 }
+
+function displayClassNames() {
+    let list = document.getElementById("classNamesList"); list.innerHTML = "";
+    if (!classNames.length) { list.innerHTML = "<p class='label-small'>No class name suggestions yet.</p>"; return; }
+    classNames.forEach(s => {
+        list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br><b>Class Name:</b> ${s.idea}</div>`;
+    });
+}
+
+function submitSuggestion() {
+    let name = document.getElementById("name").value || "Anonymous";
+    let idea = document.getElementById("idea").value;
+    if (!idea.trim()) { alert("Enter a suggestion."); return; }
+    if (containsAbuse(idea) || containsAbuse(name)) { alert("No abusive words allowed."); return; }
+    let checked = [...document.querySelectorAll("input[type='checkbox']:checked")].map(c => c.value);
+    if (!checked.length) { alert("Select at least one category."); return; }
+    checked.forEach(cat => votes[cat] = (votes[cat] || 0) + 1);
+    suggestions.push({name, idea, categories: checked, time: new Date().toLocaleString()});
+    localStorage.setItem("suggestions", JSON.stringify(suggestions));
+    localStorage.setItem("votes", JSON.stringify(votes));
+    displaySuggestions(); displayVotes();
+    document.getElementById("name").value = "";
+    document.getElementById("idea").value = "";
+    document.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked=false);
+}
+
+function displaySuggestions() {
+    let list = document.getElementById("suggestionsList"); list.innerHTML="";
+    if (!suggestions.length) { list.innerHTML="<p class='label-small'>No suggestions yet.</p>"; return; }
+    suggestions.forEach(s => {
+        list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br><br>${s.idea}<br><br><b>Categories:</b> ${s.categories.join(", ")}</div>`;
+    });
+}
+
+function displayVotes() {
+    let voteList = document.getElementById("voteList");
+    let topText = document.getElementById("topCategoriesText");
+    voteList.innerHTML="";
+    let entries = Object.entries(votes); if (!entries.length) { topText.textContent="No votes yet."; return; }
+    entries.sort((a,b)=>b[1]-a[1]);
+    topText.textContent = entries.slice(0,3).map(([c,v])=>`${c} (${v})`).join(" · ");
+    entries.forEach(([cat, count]) => {
+        voteList.innerHTML += `<div class="cat"><span>${cat}</span><span class="vote-count">${count} vote${count!=1?"s":""}</span></div>`;
+    });
+}
+
+window.addEventListener("scroll",()=>{ const btn=document.getElementById("backToTop"); btn.style.display=(window.scrollY>200)?"block":"none"; });
+function scrollToTop(){ window.scrollTo({top:0,behavior:"smooth"}); }
+
+// Initial render
+displayClassNames();
+displaySuggestions();
+displayVotes();
 </script>
 
 </body>
