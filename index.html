@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>KIMSS Class Website – Suggestions</title>
+    <title>KIMSS S1 Class of 2024 – Suggestions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f2f2f7;
+            background: #e8edf5;
             margin: 0;
             padding: 0;
         }
         header {
-            background: #000;
+            background: #1a3d7c;
             color: white;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
             font-size: 28px;
             letter-spacing: 1px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
         }
         .container {
-            width: 90%;
+            width: 92%;
             max-width: 900px;
             margin: auto;
             margin-top: 25px;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+        .container:hover {
+            transform: scale(1.01);
         }
         h2 {
-            border-left: 5px solid black;
+            border-left: 5px solid #1a3d7c;
             padding-left: 10px;
         }
         input, textarea {
             width: 100%;
             padding: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             border: 1px solid #ccc;
             margin-top: 8px;
+            font-size: 15px;
         }
         textarea {
             height: 120px;
@@ -43,13 +50,17 @@
         button {
             width: 100%;
             padding: 15px;
-            margin-top: 10px;
-            background: black;
+            margin-top: 12px;
+            background: #1a3d7c;
             color: white;
             font-size: 18px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #2e58a6;
         }
         .category-box {
             display: grid;
@@ -58,17 +69,21 @@
         }
         .cat {
             display: flex;
-            background: #f5f5f5;
+            justify-content: space-between;
+            background: #f0f4ff;
             padding: 8px;
             border-radius: 6px;
             align-items: center;
-            justify-content: space-between;
         }
         .suggestion {
-            background: #f4f4f4;
+            background: #eef2f7;
             margin-top: 12px;
             padding: 12px;
             border-radius: 6px;
+            transition: 0.3s;
+        }
+        .suggestion:hover {
+            transform: scale(1.01);
         }
         .vote-count {
             font-size: 13px;
@@ -79,16 +94,28 @@
 
 <body>
 
-<header>KIMSS International – Class Website Suggestions</header>
+<header>KIMSS S1 Class of 2024 – Suggestion Center</header>
 
 <div class="container">
-    <h2>Submit Your Suggestion</h2>
+    <h2>Class Name Suggestions</h2>
+
+    <input id="nameClass" placeholder="Your name (optional)">
+    <input id="classNameIdea" placeholder="Suggest a Class Name (Example: 'S1 Legends 2024')">
+
+    <button onclick="submitClassName()">Submit Class Name</button>
+
+    <div id="classNamesList"></div>
+</div>
+
+
+
+<div class="container">
+    <h2>General Suggestions</h2>
 
     <input id="name" placeholder="Your Name (optional)">
-    <textarea id="idea" placeholder="Write your suggestion here..."></textarea>
+    <textarea id="idea" placeholder="Your suggestion..."></textarea>
 
-    <h3>Select Website Categories</h3>
-    <p>Select categories you think our website should include:</p>
+    <h3>Choose Categories</h3>
 
     <div class="category-box">
         <label class="cat"><span>Jazz</span> <input type="checkbox" value="Jazz"></label>
@@ -109,7 +136,7 @@
 
 
 <div class="container">
-    <h2>Category Vote Counts</h2>
+    <h2>Category Votes</h2>
     <div id="voteList"></div>
 </div>
 
@@ -118,43 +145,74 @@
     <div id="suggestionsList"></div>
 </div>
 
-<div class="container">
-    <h2>About This Project</h2>
-    <p>
-        This is a pre-website for KIMSS International Class where students share ideas on 
-        the official class website design and structure. Your suggestions help shape how 
-        our final site will look, what content it will have, and how it will represent our class.  
-    </p>
-    <p>
-        Keep submitting ideas, voting for categories, and making this project fun and creative!  
-    </p>
-</div>
 
 
 <script>
     let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
     let votes = JSON.parse(localStorage.getItem("votes") || "{}");
+    let classNames = JSON.parse(localStorage.getItem("classNames") || "[]");
 
-    // Update UI
+    const BAD_WORDS = ["fuck","bitch","pussy","dick","asshole","nigga","shit","mf","motherfucker","whore"];
+
     displaySuggestions();
     displayVotes();
+    displayClassNames();
+
+    function containsAbuse(text) {
+        let lower = text.toLowerCase();
+        return BAD_WORDS.some(word => lower.includes(word));
+    }
 
 
+
+    // CLASS NAME SUBMISSION
+    function submitClassName() {
+        let name = document.getElementById("nameClass").value || "Anonymous";
+        let idea = document.getElementById("classNameIdea").value;
+
+        if (idea.trim() === "") return alert("Please enter a class name suggestion.");
+        if (containsAbuse(idea)) return alert("Abusive words are not allowed.");
+
+        classNames.push({ name, idea, time: new Date().toLocaleString() });
+
+        localStorage.setItem("classNames", JSON.stringify(classNames));
+        displayClassNames();
+
+        document.getElementById("nameClass").value = "";
+        document.getElementById("classNameIdea").value = "";
+    }
+
+
+    function displayClassNames() {
+        let list = document.getElementById("classNamesList");
+        list.innerHTML = "";
+
+        classNames.forEach(s => {
+            list.innerHTML += `
+                <div class="suggestion">
+                    <b>${s.name}</b><br>
+                    <i>${s.time}</i><br>
+                    <b>Class Name Suggestion:</b> ${s.idea}
+                </div>
+            `;
+        });
+    }
+
+
+
+    // GENERAL SUGGESTIONS
     function submitSuggestion() {
         let name = document.getElementById("name").value || "Anonymous";
         let idea = document.getElementById("idea").value;
-        if (idea.trim() === "") { alert("Please enter a suggestion."); return; }
+
+        if (idea.trim() === "") return alert("Please enter a suggestion.");
+        if (containsAbuse(idea)) return alert("Abusive words not allowed.");
 
         let checked = [...document.querySelectorAll("input[type='checkbox']:checked")].map(c => c.value);
+        if (checked.length === 0) return alert("Select at least one category.");
 
-        if (checked.length === 0) { alert("Please choose at least one category."); return; }
+        checked.forEach(cat => { votes[cat] = (votes[cat] || 0) + 1; });
 
-        // Save votes
-        checked.forEach(cat => {
-            votes[cat] = (votes[cat] || 0) + 1;
-        });
-
-        // Save suggestion
         suggestions.push({
             name: name,
             idea: idea,
