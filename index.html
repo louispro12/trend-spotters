@@ -44,6 +44,7 @@
             color: var(--accent-gold-soft);
         }
 
+        /* Little gold bar animation under header */
         .gold-bar {
             position: absolute;
             bottom: -3px;
@@ -141,30 +142,25 @@
             box-shadow: none;
         }
 
-        /* CATEGORY BOX WITH BACKGROUND IMAGE */
         .category-box {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             margin-top: 8px;
-            padding: 15px;
-            border-radius: 10px;
-            background-image: url('class-bg.jpg'); /* ← Replace with your picture file */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         .cat {
             display: flex;
             justify-content: space-between;
-            background: rgba(0,0,0,0.5); /* semi-transparent overlay */
+            background: var(--accent-gold-soft);
             padding: 7px 10px;
             border-radius: 8px;
             align-items: center;
             font-size: 14px;
-            color: #fff; /* readable text */
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        .cat span {
+            font-weight: 500;
         }
 
         .cat input[type="checkbox"] {
@@ -211,6 +207,7 @@
             color: #7a620f;
         }
 
+        /* Back to top button */
         #backToTop {
             position: fixed;
             bottom: 18px;
@@ -270,7 +267,7 @@
 <div class="container">
     <h2>About This Suggestion Project</h2>
     <p>
-        The goal of this project is to build a class website that truly represents our class – 
+        The goal of this project is to build a class website that truly represents ourclass- 
         our <b>vibes, jokes, photos, memories, achievements and stories</b>. Instead of one person 
         deciding everything, this page lets the whole class contribute.
     </p>
@@ -361,6 +358,7 @@
     <div id="suggestionsList"></div>
 </div>
 
+<!-- Back to top button -->
 <button id="backToTop" onclick="scrollToTop()">Top ↑</button>
 
 <script>
@@ -368,25 +366,41 @@
     let votes = JSON.parse(localStorage.getItem("votes") || "{}");
     let classNames = JSON.parse(localStorage.getItem("classNames") || "[]");
 
-    const BAD_WORDS = ["fuck","bitch","pussy","dick","asshole","nigga","shit","mf","motherfucker","whore","idiot","stupid","fool","retard"];
+    // Abuse word list – used only for blocking bad content
+    const BAD_WORDS = [
+        "fuck","bitch","pussy","dick","asshole","nigga","shit","mf",
+        "motherfucker","whore","idiot","stupid","fool","retard"
+    ];
 
     function containsAbuse(text) {
         let lower = text.toLowerCase();
         return BAD_WORDS.some(word => lower.includes(word));
     }
 
+    // Initial display
     displaySuggestions();
     displayVotes();
     displayClassNames();
 
+    // CLASS NAME FUNCTIONS
     function submitClassName() {
         let name = document.getElementById("nameClass").value || "Anonymous";
         let idea = document.getElementById("classNameIdea").value;
-        if (idea.trim() === "") { alert("Please enter a class name suggestion."); return; }
-        if (containsAbuse(idea) || containsAbuse(name)) { alert("Abusive or violent words are not allowed."); return; }
+
+        if (idea.trim() === "") {
+            alert("Please enter a class name suggestion.");
+            return;
+        }
+        if (containsAbuse(idea) || containsAbuse(name)) {
+            alert("Abusive or violent words are not allowed. Please keep it clean.");
+            return;
+        }
+
         classNames.push({ name, idea, time: new Date().toLocaleString() });
+
         localStorage.setItem("classNames", JSON.stringify(classNames));
         displayClassNames();
+
         document.getElementById("nameClass").value = "";
         document.getElementById("classNameIdea").value = "";
     }
@@ -394,50 +408,118 @@
     function displayClassNames() {
         let list = document.getElementById("classNamesList");
         list.innerHTML = "";
-        if (classNames.length === 0) { list.innerHTML = "<p class='label-small'>No class name suggestions yet.</p>"; return; }
+
+        if (classNames.length === 0) {
+            list.innerHTML = "<p class='label-small'>No class name suggestions yet. Be the first to add one.</p>";
+            return;
+        }
+
         classNames.forEach(s => {
-            list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br><b>Class Name Suggestion:</b> ${s.idea}</div>`;
+            list.innerHTML += `
+                <div class="suggestion">
+                    <b>${s.name}</b><br>
+                    <i>${s.time}</i><br>
+                    <b>Class Name Suggestion:</b> ${s.idea}
+                </div>
+            `;
         });
     }
 
+    // GENERAL WEBSITE SUGGESTIONS
     function submitSuggestion() {
         let name = document.getElementById("name").value || "Anonymous";
         let idea = document.getElementById("idea").value;
-        if (idea.trim() === "") { alert("Please enter a suggestion."); return; }
-        if (containsAbuse(idea) || containsAbuse(name)) { alert("Abusive words not allowed."); return; }
-        let checked = [...document.querySelectorAll(".category-box input[type='checkbox']:checked")].map(c => c.value);
-        if (checked.length === 0) { alert("Select at least one category."); return; }
-        checked.forEach(cat => { votes[cat] = (votes[cat] || 0) + 1; });
-        suggestions.push({ name, idea, categories: checked, time: new Date().toLocaleString() });
+
+        if (idea.trim() === "") {
+            alert("Please enter a suggestion.");
+            return;
+        }
+        if (containsAbuse(idea) || containsAbuse(name)) {
+            alert("Abusive or violent words are not allowed. Please write something respectful.");
+            return;
+        }
+
+        let checked = [...document.querySelectorAll("input[type='checkbox']:checked")].map(c => c.value);
+        if (checked.length === 0) {
+            alert("Select at least one category.");
+            return;
+        }
+
+        checked.forEach(cat => {
+            votes[cat] = (votes[cat] || 0) + 1;
+        });
+
+        suggestions.push({
+            name: name,
+            idea: idea,
+            categories: checked,
+            time: new Date().toLocaleString()
+        });
+
         localStorage.setItem("suggestions", JSON.stringify(suggestions));
         localStorage.setItem("votes", JSON.stringify(votes));
+
         displaySuggestions();
         displayVotes();
+
         document.getElementById("name").value = "";
         document.getElementById("idea").value = "";
-        document.querySelectorAll(".category-box input[type='checkbox']").forEach(cb => cb.checked = false);
+        document.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
     }
 
     function displayVotes() {
         let voteList = document.getElementById("voteList");
         let topText = document.getElementById("topCategoriesText");
         voteList.innerHTML = "";
+
         let entries = Object.entries(votes);
-        if (entries.length === 0) { topText.textContent = "No votes yet."; return; }
+        if (entries.length === 0) {
+            topText.textContent = "No votes yet. Suggest something and tick a category to start the list.";
+            return;
+        }
+
+        // Sort by votes, high to low
         entries.sort((a,b) => b[1] - a[1]);
-        topText.textContent = entries.slice(0,3).map(([cat,count])=>`${cat} (${count})`).join(" · ");
-        entries.forEach(([cat,count]) => { voteList.innerHTML += `<div class="cat"><span>${cat}</span><span class="vote-count">${count} vote${count !==1?"s":""}</span></div>`; });
+
+        // Top 3 text
+        let topThree = entries.slice(0,3);
+        let topStrings = topThree.map(([cat, count]) => `${cat} (${count})`);
+        topText.textContent = topStrings.join(" · ");
+
+        // Full list
+        entries.forEach(([cat, count]) => {
+            voteList.innerHTML += `
+                <div class="cat">
+                    <span>${cat}</span>
+                    <span class="vote-count">${count} vote${count !== 1 ? "s" : ""}</span>
+                </div>
+            `;
+        });
     }
 
     function displaySuggestions() {
         let list = document.getElementById("suggestionsList");
         list.innerHTML = "";
-        if (suggestions.length === 0) { list.innerHTML = "<p class='label-small'>No website suggestions yet.</p>"; return; }
+
+        if (suggestions.length === 0) {
+            list.innerHTML = "<p class='label-small'>No website suggestions yet. Add yours above to get things started.</p>";
+            return;
+        }
+
         suggestions.forEach(s => {
-            list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br><br>${s.idea}<br><br><b>Categories:</b> ${s.categories.join(", ")}</div>`;
+            list.innerHTML += `
+                <div class="suggestion">
+                    <b>${s.name}</b><br>
+                    <i>${s.time}</i><br><br>
+                    ${s.idea}<br><br>
+                    <b>Categories:</b> ${s.categories.join(", ")}
+                </div>
+            `;
         });
     }
-window.addEventListener("scroll", () => {
+
+    // Back to top button logic
+    window.addEventListener("scroll", () => {
         const btn = document.getElementById("backToTop");
         if (window.scrollY > 200) {
             btn.style.display = "block";
@@ -453,4 +535,3 @@ window.addEventListener("scroll", () => {
 
 </body>
 </html>
-    window.addEventListener("scroll", () => { const btn = document.getElementById("backToTop"); btn.style.display = window
