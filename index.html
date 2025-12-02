@@ -1,93 +1,207 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>KIMSS International — Class Website Suggestions</title>
+    <title>KIMSS Class Website – Suggestions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
+            background: #f2f2f7;
+            margin: 0;
+            padding: 0;
         }
-        h1 { text-align: center; }
-        #suggestions {
-            margin-top: 30px;
+        header {
+            background: #000;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            margin-top: 25px;
             background: white;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
         }
-        .item {
-            padding: 10px;
-            background: #eaeaea;
-            margin-top: 10px;
-            border-radius: 5px;
+        h2 {
+            border-left: 5px solid black;
+            padding-left: 10px;
         }
-        input, textarea, button {
+        input, textarea {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 16px;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 8px;
+        }
+        textarea {
+            height: 120px;
         }
         button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
             background: black;
             color: white;
+            font-size: 18px;
             border: none;
+            border-radius: 6px;
             cursor: pointer;
+        }
+        .category-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .cat {
+            display: flex;
+            background: #f5f5f5;
+            padding: 8px;
+            border-radius: 6px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .suggestion {
+            background: #f4f4f4;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        .vote-count {
+            font-size: 13px;
+            color: #333;
         }
     </style>
 </head>
+
 <body>
 
-<h1>KIMSS International — Class Website Ideas</h1>
-<p>Submit your ideas for the class website. Everyone can see what others suggested.</p>
+<header>KIMSS International – Class Website Suggestions</header>
 
-<h3>Submit a Suggestion</h3>
-<input id="name" placeholder="Your name (optional)">
-<textarea id="idea" placeholder="Write your suggestion here..."></textarea>
-<button onclick="submitIdea()">Submit</button>
+<div class="container">
+    <h2>Submit Your Suggestion</h2>
 
-<div id="suggestions">
-    <h2>All Suggestions</h2>
-    <div id="list"></div>
+    <input id="name" placeholder="Your Name (optional)">
+    <textarea id="idea" placeholder="Write your suggestion here..."></textarea>
+
+    <h3>Select Website Categories</h3>
+    <p>Select categories you think our website should include:</p>
+
+    <div class="category-box">
+        <label class="cat"><span>Jazz</span> <input type="checkbox" value="Jazz"></label>
+        <label class="cat"><span>Photo Epics</span> <input type="checkbox" value="Photo Epics"></label>
+        <label class="cat"><span>School Vybes</span> <input type="checkbox" value="School Vybes"></label>
+        <label class="cat"><span>Memories</span> <input type="checkbox" value="Memories"></label>
+        <label class="cat"><span>Class Members</span> <input type="checkbox" value="Class Members"></label>
+        <label class="cat"><span>Achievements</span> <input type="checkbox" value="Achievements"></label>
+        <label class="cat"><span>Events</span> <input type="checkbox" value="Events"></label>
+        <label class="cat"><span>News Updates</span> <input type="checkbox" value="News Updates"></label>
+        <label class="cat"><span>Fun Corner</span> <input type="checkbox" value="Fun Corner"></label>
+        <label class="cat"><span>Inspiration Wall</span> <input type="checkbox" value="Inspiration Wall"></label>
+    </div>
+
+    <button onclick="submitSuggestion()">Submit Suggestion</button>
 </div>
 
+
+
+<div class="container">
+    <h2>Category Vote Counts</h2>
+    <div id="voteList"></div>
+</div>
+
+<div class="container">
+    <h2>All Suggestions</h2>
+    <div id="suggestionsList"></div>
+</div>
+
+<div class="container">
+    <h2>About This Project</h2>
+    <p>
+        This is a pre-website for KIMSS International Class where students share ideas on 
+        the official class website design and structure. Your suggestions help shape how 
+        our final site will look, what content it will have, and how it will represent our class.  
+    </p>
+    <p>
+        Keep submitting ideas, voting for categories, and making this project fun and creative!  
+    </p>
+</div>
+
+
 <script>
-    // Load suggestions from local storage (temporary memory)
     let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
+    let votes = JSON.parse(localStorage.getItem("votes") || "{}");
+
+    // Update UI
     displaySuggestions();
+    displayVotes();
 
-    function submitIdea() {
-        let name = document.getElementById("name").value;
+
+    function submitSuggestion() {
+        let name = document.getElementById("name").value || "Anonymous";
         let idea = document.getElementById("idea").value;
+        if (idea.trim() === "") { alert("Please enter a suggestion."); return; }
 
-        if (idea.trim() === "") {
-            alert("Please type a suggestion.");
-            return;
-        }
+        let checked = [...document.querySelectorAll("input[type='checkbox']:checked")].map(c => c.value);
 
-        let item = {
-            name: name || "Anonymous",
+        if (checked.length === 0) { alert("Please choose at least one category."); return; }
+
+        // Save votes
+        checked.forEach(cat => {
+            votes[cat] = (votes[cat] || 0) + 1;
+        });
+
+        // Save suggestion
+        suggestions.push({
+            name: name,
             idea: idea,
+            categories: checked,
             time: new Date().toLocaleString()
-        };
+        });
 
-        suggestions.push(item);
         localStorage.setItem("suggestions", JSON.stringify(suggestions));
+        localStorage.setItem("votes", JSON.stringify(votes));
 
         displaySuggestions();
+        displayVotes();
 
         document.getElementById("name").value = "";
         document.getElementById("idea").value = "";
+        document.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
     }
 
+
+    function displayVotes() {
+        let voteList = document.getElementById("voteList");
+        voteList.innerHTML = "";
+
+        Object.keys(votes).forEach(cat => {
+            voteList.innerHTML += `
+                <div class="cat">
+                    <b>${cat}</b>
+                    <span class="vote-count">${votes[cat]} votes</span>
+                </div>
+            `;
+        });
+    }
+
+
     function displaySuggestions() {
-        let list = document.getElementById("list");
+        let list = document.getElementById("suggestionsList");
         list.innerHTML = "";
 
         suggestions.forEach(s => {
-            let div = document.createElement("div");
-            div.className = "item";
-            div.innerHTML = `<b>${s.name}</b><br>${s.idea}<br><small>${s.time}</small>`;
-            list.appendChild(div);
+            list.innerHTML += `
+                <div class="suggestion">
+                    <b>${s.name}</b><br>
+                    <i>${s.time}</i><br><br>
+                    ${s.idea}<br><br>
+                    <b>Categories:</b> ${s.categories.join(", ")}
+                </div>
+            `;
         });
     }
 </script>
