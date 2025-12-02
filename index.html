@@ -12,17 +12,13 @@
             --text-muted: #555555;
             --header-bg: #111111;
         }
-
         * { box-sizing: border-box; }
-
         body {
             font-family: Arial, sans-serif;
             background: var(--main-bg);
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             color: var(--text-main);
         }
-
         header {
             background: var(--header-bg);
             color: #fdfaf3;
@@ -34,115 +30,32 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.4);
             border-bottom: 4px solid var(--accent-gold);
         }
-
-        header span.sub {
-            display: block;
-            font-size: 14px;
-            margin-top: 6px;
-            color: var(--accent-gold-soft);
-        }
-
-        .gold-bar {
-            position: absolute;
-            bottom: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent-gold);
-            border-radius: 999px;
-            animation: pulseBar 2.5s infinite;
-        }
-
-        @keyframes pulseBar {
-            0% { width: 60px; opacity: 0.7; }
-            50% { width: 120px; opacity: 1; }
-            100% { width: 60px; opacity: 0.7; }
-        }
-
-        .container {
-            width: 92%;
-            max-width: 950px;
-            margin: 22px auto;
-            background: var(--card-bg);
-            padding: 22px;
-            border-radius: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-            border: 1px solid rgba(0,0,0,0.04);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 18px rgba(0,0,0,0.18);
-        }
-
+        header span.sub { display: block; font-size: 14px; margin-top: 6px; color: var(--accent-gold-soft); }
+        .gold-bar { position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: var(--accent-gold); border-radius: 999px; animation: pulseBar 2.5s infinite; }
+        @keyframes pulseBar { 0% { width: 60px; opacity: 0.7; } 50% { width: 120px; opacity: 1; } 100% { width: 60px; opacity: 0.7; } }
+        .container { width: 92%; max-width: 950px; margin: 22px auto; background: var(--card-bg); padding: 22px; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.04); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .container:hover { transform: translateY(-3px); box-shadow: 0 7px 18px rgba(0,0,0,0.18); }
         h2 { border-left: 5px solid var(--accent-gold); padding-left: 10px; margin-top: 0; margin-bottom: 10px; }
-
         p, li { font-size: 15px; line-height: 1.6; color: var(--text-muted); }
         ul { padding-left: 20px; }
-
-        input, textarea {
-            width: 100%;
-            padding: 11px;
-            border-radius: 8px;
-            border: 1px solid #c7c3b6;
-            margin-top: 8px;
-            font-size: 14px;
-            outline: none;
-            transition: border 0.2s ease, box-shadow 0.2s ease;
-        }
-
+        input, textarea { width: 100%; padding: 11px; border-radius: 8px; border: 1px solid #c7c3b6; margin-top: 8px; font-size: 14px; outline: none; transition: border 0.2s ease, box-shadow 0.2s ease; }
         input:focus, textarea:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 2px rgba(212,175,55,0.25); }
         textarea { height: 120px; resize: vertical; }
-
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 12px;
-            background: var(--header-bg);
-            color: #fdfaf3;
-            font-size: 16px;
-            border: none;
-            border-radius: 999px;
-            cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-        }
-
+        button { width: 100%; padding: 13px; margin-top: 12px; background: var(--header-bg); color: #fdfaf3; font-size: 16px; border: none; border-radius: 999px; cursor: pointer; transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; }
         button:hover { background: #222222; box-shadow: 0 3px 8px rgba(0,0,0,0.35); transform: translateY(-1px); }
         button:active { transform: translateY(1px); box-shadow: none; }
-
         .category-box { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
         .cat { display: flex; justify-content: space-between; background: var(--accent-gold-soft); padding: 7px 10px; border-radius: 8px; align-items: center; font-size: 14px; }
         .cat span { font-weight: 500; }
         .cat input[type="checkbox"] { transform: scale(1.1); }
-
         .suggestion { background: #f5f1e3; margin-top: 10px; padding: 10px 12px; border-radius: 8px; transition: transform 0.15s ease, box-shadow 0.15s ease; border: 1px solid rgba(0,0,0,0.05); }
         .suggestion:hover { transform: translateY(-2px); box-shadow: 0 3px 7px rgba(0,0,0,0.18); }
-
         .vote-count { font-size: 13px; color: #333333; }
         .label-small { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
-
         .top-cats { margin-top: 10px; padding: 10px; background: #fffaf0; border-radius: 8px; border: 1px dashed var(--accent-gold); font-size: 14px; }
         .top-cats-title { font-weight: bold; margin-bottom: 5px; color: #7a620f; }
-
-        #backToTop {
-            position: fixed;
-            bottom: 18px;
-            right: 18px;
-            background: var(--header-bg);
-            color: #fdfaf3;
-            border: none;
-            border-radius: 999px;
-            padding: 10px 16px;
-            font-size: 13px;
-            cursor: pointer;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-            display: none;
-            z-index: 100;
-        }
+        #backToTop { position: fixed; bottom: 18px; right: 18px; background: var(--header-bg); color: #fdfaf3; border: none; border-radius: 999px; padding: 10px 16px; font-size: 13px; cursor: pointer; box-shadow: 0 3px 8px rgba(0,0,0,0.4); display: none; z-index: 100; }
         #backToTop:hover { background: #222222; }
-
         .badge { display: inline-block; background: var(--accent-gold); color: #111; padding: 2px 7px; border-radius: 999px; font-size: 11px; margin-left: 4px; }
     </style>
 </head>
@@ -154,24 +67,41 @@
     <div class="gold-bar"></div>
 </header>
 
+<!-- INTRO -->
 <div class="container">
     <h2>Welcome!</h2>
-    <p>This page is for collecting <b>ideas and suggestions</b> from students of <b>KIMSS S1 Class of 2024</b> to help us design and build the official class website.</p>
+    <p>
+        This page is for collecting <b>ideas and suggestions</b> from students of 
+        <b>KIMSS S1 Class of 2024</b> to help us design and build the official class website.
+        Everything you write here is meant to improve how our class is seen, remembered and enjoyed online.
+    </p>
 </div>
 
+<!-- ABOUT / WHY PARTICIPATE -->
+<div class="container">
+    <h2>About This Suggestion Project</h2>
+    <p>
+        The goal of this project is to build a class website that truly represents our class – 
+        our <b>vibes, jokes, photos, memories, achievements and stories</b>. Everyone can contribute.
+    </p>
+</div>
+
+<!-- CLASS NAME SUGGESTIONS -->
 <div class="container">
     <h2>Class Name Suggestions <span class="badge">Name Only</span></h2>
     <input id="nameClass" placeholder="Your name (optional)">
     <input id="classNameIdea" placeholder="Suggest a Class Name">
-    <button id="submitClassName">Submit Class Name</button>
+    <button id="submitClassName" type="button">Submit Class Name</button>
     <div id="classNamesList"></div>
 </div>
 
+<!-- OTHER WEBSITE SUGGESTIONS -->
 <div class="container">
     <h2>Other Suggestions for the Class Website</h2>
     <input id="name" placeholder="Your Name (optional)">
-    <textarea id="idea" placeholder="Your idea or suggestion about the class website..."></textarea>
-    <h3>Choose Categories</h3>
+    <textarea id="idea" placeholder="Your suggestion"></textarea>
+
+    <h3>Categories</h3>
     <div class="category-box">
         <label class="cat"><span>Jazz</span> <input type="checkbox" value="Jazz"></label>
         <label class="cat"><span>Photo Epics</span> <input type="checkbox" value="Photo Epics"></label>
@@ -184,9 +114,10 @@
         <label class="cat"><span>Fun Corner</span> <input type="checkbox" value="Fun Corner"></label>
         <label class="cat"><span>Inspiration Wall</span> <input type="checkbox" value="Inspiration Wall"></label>
     </div>
-    <button id="submitSuggestion">Submit Website Suggestion</button>
+    <button id="submitSuggestion" type="button">Submit Website Suggestion</button>
 </div>
 
+<!-- CATEGORY VOTES -->
 <div class="container">
     <h2>Category Votes</h2>
     <div class="top-cats">
@@ -196,12 +127,14 @@
     <div id="voteList" style="margin-top:10px;"></div>
 </div>
 
+<!-- ALL SUGGESTIONS -->
 <div class="container">
     <h2>All Suggestions</h2>
     <div id="suggestionsList"></div>
 </div>
 
-<button id="backToTop">Top ↑</button>
+<!-- Back to top button -->
+<button id="backToTop" onclick="scrollToTop()">Top ↑</button>
 
 <script>
 let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
@@ -209,50 +142,52 @@ let votes = JSON.parse(localStorage.getItem("votes") || "{}");
 let classNames = JSON.parse(localStorage.getItem("classNames") || "[]");
 
 const BAD_WORDS = ["fuck","bitch","pussy","dick","asshole","nigga","shit","mf","motherfucker","whore","idiot","stupid","fool","retard"];
-function containsAbuse(text) { return BAD_WORDS.some(word => text.toLowerCase().includes(word)); }
 
-function displayClassNames() {
-    const list = document.getElementById("classNamesList");
-    list.innerHTML = "";
-    if(classNames.length === 0){ list.innerHTML="<p>No class name suggestions yet.</p>"; return; }
-    classNames.forEach(s => { list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br><b>Class Name Suggestion:</b> ${s.idea}</div>`; });
+function containsAbuse(text){ return BAD_WORDS.some(word => text.toLowerCase().includes(word)); }
+
+function displayClassNames(){
+    const list = document.getElementById("classNamesList"); list.innerHTML = "";
+    if(classNames.length===0){ list.innerHTML="<p class='label-small'>No class name suggestions yet.</p>"; return; }
+    classNames.forEach(s=>{ list.innerHTML+=`<div class="suggestion"><b>${s.name}</b> <i>${s.time}</i><br><b>Class Name:</b> ${s.idea}</div>`; });
 }
-function displaySuggestions() {
-    const list = document.getElementById("suggestionsList");
-    list.innerHTML = "";
-    if(suggestions.length === 0){ list.innerHTML="<p>No website suggestions yet.</p>"; return; }
-    suggestions.forEach(s => { list.innerHTML += `<div class="suggestion"><b>${s.name}</b><br><i>${s.time}</i><br>${s.idea}<br><b>Categories:</b> ${s.categories.join(", ")}</div>`; });
+
+function displaySuggestions(){
+    const list = document.getElementById("suggestionsList"); list.innerHTML="";
+    if(suggestions.length===0){ list.innerHTML="<p class='label-small'>No suggestions yet.</p>"; return; }
+    suggestions.forEach(s=>{ list.innerHTML+=`<div class="suggestion"><b>${s.name}</b> <i>${s.time}</i><br>${s.idea}<br><b>Categories:</b> ${s.categories.join(", ")}</div>`; });
 }
-function displayVotes() {
+
+function displayVotes(){
     const voteList = document.getElementById("voteList");
     const topText = document.getElementById("topCategoriesText");
-    voteList.innerHTML = "";
+    voteList.innerHTML="";
     const entries = Object.entries(votes);
-    if(entries.length === 0){ topText.textContent="No votes yet."; return; }
+    if(entries.length===0){ topText.textContent="No votes yet."; return; }
     entries.sort((a,b)=>b[1]-a[1]);
-    topText.textContent = entries.slice(0,3).map(([cat,count])=>`${cat} (${count})`).join(" · ");
-    entries.forEach(([cat,count])=>{ voteList.innerHTML += `<div class="cat"><span>${cat}</span><span class="vote-count">${count} vote${count!==1?'s':''}</span></div>`; });
+    const topThree = entries.slice(0,3);
+    topText.textContent = topThree.map(([cat,count])=>`${cat} (${count})`).join(" · ");
+    entries.forEach(([cat,count])=>{ voteList.innerHTML+=`<div class="cat"><span>${cat}</span> <span class="vote-count">${count} vote${count!==1?"s":""}</span></div>`; });
 }
 
-// Submit class name
-document.getElementById("submitClassName").addEventListener("click",()=>{
+// Submit handlers
+document.getElementById("submitClassName").addEventListener("click", ()=>{
     const name=document.getElementById("nameClass").value||"Anonymous";
     const idea=document.getElementById("classNameIdea").value.trim();
     if(!idea){ alert("Enter a class name."); return; }
-    if(containsAbuse(name)||containsAbuse(idea)){ alert("Abusive words not allowed."); return; }
+    if(containsAbuse(idea)||containsAbuse(name)){ alert("Abuse not allowed."); return; }
     classNames.push({name,idea,time:new Date().toLocaleString()});
     localStorage.setItem("classNames",JSON.stringify(classNames));
     displayClassNames();
-    document.getElementById("nameClass").value=""; document.getElementById("classNameIdea").value="";
+    document.getElementById("nameClass").value="";
+    document.getElementById("classNameIdea").value="";
 });
 
-// Submit other suggestions
-document.getElementById("submitSuggestion").addEventListener("click",()=>{
+document.getElementById("submitSuggestion").addEventListener("click", ()=>{
     const name=document.getElementById("name").value||"Anonymous";
     const idea=document.getElementById("idea").value.trim();
     if(!idea){ alert("Enter a suggestion."); return; }
-    if(containsAbuse(name)||containsAbuse(idea)){ alert("Abusive words not allowed."); return; }
-    const checked=[...document.querySelectorAll(".category-box input[type='checkbox']:checked")].map(c=>c.value);
+    if(containsAbuse(idea)||containsAbuse(name)){ alert("Abuse not allowed."); return; }
+    const checked=[...document.querySelectorAll("input[type='checkbox']:checked")].map(c=>c.value);
     if(checked.length===0){ alert("Select at least one category."); return; }
     checked.forEach(cat=>votes[cat]=(votes[cat]||0)+1);
     suggestions.push({name,idea,categories:checked,time:new Date().toLocaleString()});
@@ -260,15 +195,18 @@ document.getElementById("submitSuggestion").addEventListener("click",()=>{
     localStorage.setItem("votes",JSON.stringify(votes));
     displaySuggestions(); displayVotes();
     document.getElementById("name").value=""; document.getElementById("idea").value="";
-    document.querySelectorAll(".category-box input[type='checkbox']").forEach(cb=>cb.checked=false);
+    document.querySelectorAll("input[type='checkbox']").forEach(cb=>cb.checked=false);
 });
 
-// Back to top
-window.addEventListener("scroll",()=>{ document.getElementById("backToTop").style.display=(window.scrollY>200?"block":"none"); });
-document.getElementById("backToTop").addEventListener("click",()=>{ window.scrollTo({top:0,behavior:"smooth"}); });
+// Back to top button
+window.addEventListener("scroll",()=>{
+    const btn=document.getElementById("backToTop");
+    btn.style.display = window.scrollY>200?"block":"none";
+});
+function scrollToTop(){ window.scrollTo({top:0,behavior:"smooth"}); }
 
-// Initial display
 displayClassNames(); displaySuggestions(); displayVotes();
 </script>
+
 </body>
 </html>
