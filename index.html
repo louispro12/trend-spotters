@@ -3,213 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <title>KIMSS S1 Class of 2024 – Website Suggestions</title>
+
 <style>
-
     body {
-        margin: 0;
         font-family: Arial, sans-serif;
-        background: #f7f9fc;
+        background: #f4f7fb;
+        margin: 0;
+        padding: 0;
         color: #222;
-        line-height: 1.6;
     }
 
-    /* HEADER */
     header {
-        text-align: center;
-        padding: 50px 20px;
-        background-size: cover;
-        background-position: center;
-        background-image: url('your-image-here.jpg'); /* <<< REPLACE WITH YOUR PICTURE */
-    }
-
-    header h1 {
-        font-size: 42px;
-        font-weight: 900;
+        background: #0058ff;
         color: white;
-        text-shadow: 0px 0px 8px black;
+        padding: 20px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+        letter-spacing: 1px;
     }
 
-    header p {
-        font-size: 20px;
-        color: #fff;
-        text-shadow: 0px 0px 6px black;
-    }
-
-    /* MAIN CONTENT */
     .container {
         width: 90%;
         max-width: 900px;
         margin: auto;
+        background: white;
+        margin-top: 20px;
         padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.1);
     }
 
-    .section-title {
-        font-size: 30px;
-        font-weight: 800;
-        margin-top: 40px;
-        border-left: 6px solid #3498db;
-        padding-left: 12px;
-        color: #333;
+    h2 {
+        color: #0058ff;
+        border-left: 5px solid #0058ff;
+        padding-left: 10px;
     }
 
-    /* INPUT BOXES */
-    input, textarea, select {
+    .about-box {
+        background: #e8f0ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input, textarea {
         width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        border: 2px solid #ccc;
-        border-radius: 6px;
-        font-size: 16px;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        border-radius: 5px;
+        border: 1px solid #aaa;
+        font-size: 15px;
+    }
+
+    textarea {
+        height: 100px;
     }
 
     button {
-        background: #3498db;
+        background: #0058ff;
         color: white;
-        padding: 14px 20px;
+        padding: 12px 20px;
         border: none;
-        border-radius: 6px;
-        margin-top: 15px;
-        font-size: 18px;
         cursor: pointer;
-        transition: 0.3s;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: 0.2s;
     }
 
     button:hover {
-        background: #2980b9;
+        background: #003fbd;
     }
 
-    /* CATEGORY CARDS */
     .categories {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 12px;
-        margin-top: 10px;
+        background-image: url('YOUR-IMAGE-HERE.jpg'); /* ← Replace with your picture */
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px black;
+        margin-bottom: 20px;
     }
 
-    .cat-card {
-        background: white;
-        border: 2px solid #e1e1e1;
-        padding: 12px;
-        border-radius: 6px;
-        cursor: pointer;
-        text-align: center;
-        transition: 0.3s;
-    }
-
-    .cat-card:hover {
-        border-color: #3498db;
-        transform: scale(1.05);
+    .category-item {
+        margin: 8px 0;
     }
 
     .suggestion-box {
-        background: #fff;
-        border-radius: 6px;
-        padding: 15px;
-        margin-top: 10px;
-        border: 1px solid #ccc;
+        margin-top: 30px;
     }
 
+    .suggestion-card {
+        background: #f2f6ff;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 6px;
+        border-left: 4px solid #0058ff;
+    }
+
+    .votes {
+        float: right;
+        background: #0058ff;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 4px;
+    }
 </style>
 </head>
+
 <body>
 
-<header>
-    <h1>KIMSS S1 Class of 2024</h1>
-    <p>Official Suggestion Portal for Our Upcoming Class Website</p>
-</header>
+<header>KIMSS S1 Class of 2024 – Website Suggestions</header>
 
 <div class="container">
 
-    <!-- ABOUT SECTION -->
-    <h2 class="section-title">About This Site</h2>
-    <p>
-        This pre-website is for collecting ideas from all students of **KIMSS S1 Class of 2024**.
-        We want everyone to contribute name ideas, website content ideas, categories, memories, and everything
-        that will make our class website the best.  
+    <h2>About This Page</h2>
+    <div class="about-box">
+        This website is for **collecting ideas from all students** of KIMSS S1 Class of 2024.
+        Your opinions will help us choose:<br><br>
+        ✔ The best class website name  
+        ✔ The content we should add  
+        ✔ What categories matter most to us  
+        ✔ How the final website should look  
         <br><br>
-        Your opinion matters — feel free to participate. All suggestions are visible below for transparency.
-        Abusive or violent words are automatically blocked.
-    </p>
-
-    <!-- SUGGESTIONS FORM -->
-    <h2 class="section-title">Submit Your Suggestions</h2>
-
-    <label>1. Your Name</label>
-    <input id="username" placeholder="Enter your name">
-
-    <label>2. Suggest a Website Name</label>
-    <input id="webname" placeholder="Example: S1 Legends Hub">
-
-    <label>3. Other Suggestions</label>
-    <textarea id="message" rows="4" placeholder="Write any idea for the website..."></textarea>
-
-    <!-- CATEGORIES -->
-    <h2 class="section-title">Choose Website Categories</h2>
-    <div class="categories">
-        <label class="cat-card"><input type="checkbox" value="Jazz"> Jazz</label>
-        <label class="cat-card"><input type="checkbox" value="Photos"> Photos</label>
-        <label class="cat-card"><input type="checkbox" value="Epics"> Epics</label>
-        <label class="cat-card"><input type="checkbox" value="School Vibes"> School Vibes</label>
-        <label class="cat-card"><input type="checkbox" value="Memories"> Memories</label>
-        <label class="cat-card"><input type="checkbox" value="Achievements"> Achievements</label>
-        <label class="cat-card"><input type="checkbox" value="Events"> Events</label>
-        <label class="cat-card"><input type="checkbox" value="Sports"> Sports</label>
-        <label class="cat-card"><input type="checkbox" value="Fun Moments"> Fun Moments</label>
-        <label class="cat-card"><input type="checkbox" value="Announcements"> Announcements</label>
+        *Please participate so we build a website that truly represents our whole class!*
     </div>
 
-    <button onclick="submitSuggestion()">Submit Suggestion</button>
+    <h2>Give Your Suggestion</h2>
 
-    <!-- DISPLAY SUGGESTIONS -->
-    <h2 class="section-title">All Suggestions</h2>
-    <div id="suggestions"></div>
+    <label>Your Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label>Class Website Name Suggestion</label>
+    <input type="text" id="webname" placeholder="Type your website name idea">
+
+    <label>Other Suggestions (No Abuses Allowed)</label>
+    <textarea id="suggestion" placeholder="Write your idea..."></textarea>
+
+    <h2>Choose Categories (Tick what you want)</h2>
+
+    <div class="categories">
+        <div class="category-item"><input type="checkbox" value="Jazz"> Jazz</div>
+        <div class="category-item"><input type="checkbox" value="Photos"> Photos</div>
+        <div class="category-item"><input type="checkbox" value="Epics"> Epics</div>
+        <div class="category-item"><input type="checkbox" value="School Vibes"> School Vibes</div>
+        <div class="category-item"><input type="checkbox" value="Memories"> Memories</div>
+        <div class="category-item"><input type="checkbox" value="Achievements"> Achievements</div>
+        <div class="category-item"><input type="checkbox" value="Events"> Events</div>
+        <div class="category-item"><input type="checkbox" value="Students Corner"> Students Corner</div>
+        <div class="category-item"><input type="checkbox" value="Games"> Games</div>
+        <div class="category-item"><input type="checkbox" value="Announcements"> Announcements</div>
+    </div>
+
+    <button onclick="submitSuggestion()">Submit</button>
+
+    <h2>All Suggestions</h2>
+    <div id="suggestionList"></div>
 
 </div>
 
+
 <script>
-    // Simple abuse filter
-    const badWords = ["fuck", "bitch", "shit", "niga", "nigga", "asshole", "mf", "motherfucker"];
+function hasBadWords(text) {
+    const banned = ["fuck","bitch","shit","gay","nigga","hoe","prostitute","dick","pussy"];
+    text = text.toLowerCase();
+    return banned.some(word => text.includes(word));
+}
 
-    function hasBadWords(text) {
-        text = text.toLowerCase();
-        return badWords.some(word => text.includes(word));
+function submitSuggestion() {
+    let name = document.getElementById("name").value.trim();
+    let webname = document.getElementById("webname").value.trim();
+    let suggestion = document.getElementById("suggestion").value.trim();
+
+    if (!name || !suggestion) {
+        alert("Please fill in your name and suggestion.");
+        return;
     }
 
-    function submitSuggestion() {
-        let name = document.getElementById("username").value;
-        let webname = document.getElementById("webname").value;
-        let message = document.getElementById("message").value;
-
-        if (!name || !message || !webname) {
-            alert("Please fill in all fields.");
-            return;
-        }
-
-        if (hasBadWords(message) || hasBadWords(webname)) {
-            alert("Abusive or violent language is not allowed.");
-            return;
-        }
-
-        let categories = [];
-        document.querySelectorAll(".categories input:checked").forEach(c => categories.push(c.value));
-
-        let suggestionBox = document.createElement("div");
-        suggestionBox.className = "suggestion-box";
-        suggestionBox.innerHTML = `
-            <strong>${name}</strong><br>
-            <em>Website name suggestion:</em> ${webname}<br>
-            <em>Categories:</em> ${categories.join(", ")}<br><br>
-            ${message}
-        `;
-
-        document.getElementById("suggestions").appendChild(suggestionBox);
-
-        // clear fields
-        document.getElementById("username").value = "";
-        document.getElementById("webname").value = "";
-        document.getElementById("message").value = "";
-        document.querySelectorAll(".categories input").forEach(c => c.checked = false);
+    if (hasBadWords(suggestion) || hasBadWords(webname)) {
+        alert("Abusive words detected. Please write respectfully!");
+        return;
     }
+
+    // Create suggestion display
+    let box = document.createElement("div");
+    box.className = "suggestion-card";
+
+    box.innerHTML = `
+        <strong>${name}</strong>  
+        <div class="votes">0 votes</div>
+        <br>
+        <b>Website Name:</b> ${webname || "—"}<br>
+        <b>Suggestion:</b> ${suggestion}
+    `;
+
+    document.getElementById("suggestionList").prepend(box);
+
+    // Reset
+    document.getElementById("name").value = "";
+    document.getElementById("webname").value = "";
+    document.getElementById("suggestion").value = "";
+}
 </script>
 
 </body>
