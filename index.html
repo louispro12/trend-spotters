@@ -3,27 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KIMSS S1 Class 2024 Suggestions</title>
+<title>Official Class Website Suggestion Center</title>
 <style>
   body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
     background: #f5f5f5;
     color: #333;
   }
   header {
-    background: #4a90e2;
-    color: white;
     text-align: center;
     padding: 20px;
-    font-size: 1.5em;
-    font-weight: bold;
+    background: #4a90e2;
+    color: white;
+    position: relative;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  header h2 {
+    margin: 5px 0 10px;
+    font-weight: normal;
+    font-size: 1.2em;
+  }
+  .gold-bar {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #ffd700, #ffec8b);
+    animation: shine 2s infinite alternate;
+  }
+  @keyframes shine {
+    from {background-position: 0;}
+    to {background-position: 100%;}
   }
   main {
-    padding: 20px;
     max-width: 900px;
     margin: auto;
+    padding: 20px;
   }
   section {
     background: white;
@@ -56,78 +73,124 @@
   }
   .suggestion {
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     transition: 0.3s;
   }
   .suggestion:hover {
     background: #f0f8ff;
   }
-  .vote-btn {
-    background: #f39c12;
-    margin-left: 10px;
-  }
-  .vote-btn:hover {
-    background: #d17d00;
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #ffd700;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-left: 5px;
   }
   .checkbox-group label {
     display: inline-block;
     margin-right: 10px;
+    cursor: pointer;
   }
+  #backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    padding: 10px;
+    background: #4a90e2;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+  }
+  #backToTop:hover { background: #357ABD; }
 </style>
 </head>
 <body>
-<header>KIMSS S1 Class 2024 - Suggestion Board</header>
+
+<header>
+  <h1>KIMSS S1 Class 2024</h1>
+  <h2>Official Class Website Suggestion Center</h2>
+  <div class="gold-bar"></div>
+</header>
+
 <main>
   <section>
-    <h2>Suggest a Class Name</h2>
-    <input type="text" id="classNameInput" placeholder="Enter your suggested class name">
+    <h2>Welcome!</h2>
+    <p>This page collects ideas and suggestions from students to help design the official class website. Suggestions improve how the class is seen, remembered, and enjoyed online. Only website-related suggestions are allowed. Everyone can contribute, and the final website will be based on your ideas.</p>
+  </section>
+
+  <section>
+    <h2>About This Suggestion Project</h2>
+    <p>The goal is to build a website representing the S1 class, including vibes, jokes, photos, memories, achievements, and stories. Students help decide the class name, site sections, content types like jazz, photos, events, memories, and how the class will be remembered. Please share clean, respectful, serious, funny, or creative ideas. Every student’s voice matters!</p>
+  </section>
+
+  <section>
+    <h2>Class Name Suggestions <span class="badge">Name Only</span></h2>
+    <input type="text" id="studentName" placeholder="Your name (optional)">
+    <input type="text" id="classNameInput" placeholder="Suggest a class name">
     <button onclick="submitClassName()">Submit</button>
     <div id="classNameList"></div>
   </section>
 
   <section>
-    <h2>Website Ideas</h2>
-    <textarea id="ideaInput" rows="3" placeholder="Enter your idea"></textarea>
+    <h2>Other Suggestions for the Class Website</h2>
+    <input type="text" id="ideaStudentName" placeholder="Your name (optional)">
+    <textarea id="ideaInput" rows="3" placeholder="Write your suggestion"></textarea>
     <div class="checkbox-group">
       <label><input type="checkbox" value="Jazz"> Jazz</label>
-      <label><input type="checkbox" value="Photos"> Photos</label>
+      <label><input type="checkbox" value="Photo Epics"> Photo Epics</label>
+      <label><input type="checkbox" value="School Vybes"> School Vybes</label>
       <label><input type="checkbox" value="Memories"> Memories</label>
-      <label><input type="checkbox" value="Events"> Events</label>
+      <label><input type="checkbox" value="Class Members"> Class Members</label>
       <label><input type="checkbox" value="Achievements"> Achievements</label>
+      <label><input type="checkbox" value="Events"> Events</label>
+      <label><input type="checkbox" value="News Updates"> News Updates</label>
+      <label><input type="checkbox" value="Fun Corner"> Fun Corner</label>
+      <label><input type="checkbox" value="Inspiration Wall"> Inspiration Wall</label>
     </div>
     <button onclick="submitIdea()">Submit Idea</button>
+    <h3>Category Votes</h3>
+    <div id="categoryVotes"></div>
+    <h3>All Suggestions</h3>
     <div id="ideaList"></div>
   </section>
 </main>
 
+<button id="backToTop" onclick="scrollToTop()">↑</button>
+
 <script>
-// Simple abusive words filter
+// Abusive words filter
 const bannedWords = ["badword1", "badword2", "abuse"]; // add more
 
 function containsBannedWords(text) {
   return bannedWords.some(word => text.toLowerCase().includes(word));
 }
 
-// Storage
-let classNames = [];
-let ideas = [];
+// Load or initialize storage
+let classNames = JSON.parse(localStorage.getItem('classNames')) || [];
+let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
 
 // Submit class name
 function submitClassName() {
   const input = document.getElementById('classNameInput');
+  const nameInput = document.getElementById('studentName').value.trim();
   const value = input.value.trim();
   if (!value) return alert("Enter a class name!");
   if (containsBannedWords(value)) return alert("Inappropriate word detected!");
-
-  classNames.push({name: value, votes: 0});
+  
+  const timestamp = new Date().toLocaleString();
+  classNames.push({name: nameInput || "Anonymous", className: value, time: timestamp, votes: 0});
+  localStorage.setItem('classNames', JSON.stringify(classNames));
   input.value = '';
+  document.getElementById('studentName').value = '';
   renderClassNames();
 }
 
-// Render class names
 function renderClassNames() {
   const container = document.getElementById('classNameList');
   container.innerHTML = '';
@@ -135,35 +198,38 @@ function renderClassNames() {
     const div = document.createElement('div');
     div.className = 'suggestion';
     div.innerHTML = `
-      <span>${item.name}</span>
-      <span>Votes: ${item.votes} <button class="vote-btn" onclick="voteClassName(${index})">Vote</button></span>
+      <div><strong>${item.className}</strong> by ${item.name} at ${item.time}</div>
+      <div>Votes: ${item.votes} <button onclick="voteClassName(${index})">Vote</button></div>
     `;
     container.appendChild(div);
   });
 }
 
-// Vote for class name
 function voteClassName(index) {
   classNames[index].votes++;
+  localStorage.setItem('classNames', JSON.stringify(classNames));
   renderClassNames();
 }
 
 // Submit idea
 function submitIdea() {
   const input = document.getElementById('ideaInput');
+  const nameInput = document.getElementById('ideaStudentName').value.trim();
   const value = input.value.trim();
   if (!value) return alert("Enter your idea!");
   if (containsBannedWords(value)) return alert("Inappropriate word detected!");
-
+  
   const checkboxes = document.querySelectorAll('.checkbox-group input:checked');
   const categories = Array.from(checkboxes).map(cb => cb.value);
-  ideas.push({idea: value, categories, votes: 0});
+  const timestamp = new Date().toLocaleString();
+  ideas.push({name: nameInput || "Anonymous", text: value, categories, time: timestamp, votes: 0});
+  localStorage.setItem('ideas', JSON.stringify(ideas));
   input.value = '';
+  document.getElementById('ideaStudentName').value = '';
   checkboxes.forEach(cb => cb.checked = false);
   renderIdeas();
 }
 
-// Render ideas
 function renderIdeas() {
   const container = document.getElementById('ideaList');
   container.innerHTML = '';
@@ -171,24 +237,43 @@ function renderIdeas() {
     const div = document.createElement('div');
     div.className = 'suggestion';
     div.innerHTML = `
-      <div>
-        <strong>${item.idea}</strong><br>
-        Categories: ${item.categories.join(', ')}
-      </div>
-      <div>
-        Votes: ${item.votes} <button class="vote-btn" onclick="voteIdea(${index})">Vote</button>
-      </div>
+      <div><strong>${item.text}</strong> by ${item.name} at ${item.time}<br>
+      Categories: ${item.categories.join(', ')}</div>
+      <div>Votes: ${item.votes} <button onclick="voteIdea(${index})">Vote</button></div>
     `;
     container.appendChild(div);
   });
+  renderCategoryVotes();
 }
 
-// Vote for idea
 function voteIdea(index) {
   ideas[index].votes++;
+  localStorage.setItem('ideas', JSON.stringify(ideas));
   renderIdeas();
 }
 
+// Category votes
+function renderCategoryVotes() {
+  const voteCounts = {};
+  ideas.forEach(idea => idea.categories.forEach(cat => voteCounts[cat] = (voteCounts[cat] || 0) + 1));
+  const container = document.getElementById('categoryVotes');
+  container.innerHTML = '';
+  for (const cat in voteCounts) {
+    const div = document.createElement('div');
+    div.textContent = `${cat}: ${voteCounts[cat]} vote(s)`;
+    container.appendChild(div);
+  }
+}
+
+// Back to top button
+const backToTopBtn = document.getElementById('backToTop');
+window.onscroll = () => backToTopBtn.style.display = (window.scrollY > 300) ? 'block' : 'none';
+function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
+
+// Initial render
+renderClassNames();
+renderIdeas();
 </script>
+
 </body>
 </html>
